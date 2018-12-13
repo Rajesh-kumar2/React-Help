@@ -1,0 +1,119 @@
+--React is a library which is explicitly targeted to write UI. UI compromise  of html(template), state, behaviour and css.
+--react uses unidirectional data flow. it does not follow two way binding, data can only flow from source to target and vise versa is not possible.
+--react follows state less
+--react component can be rendered on both side client as well as server using node js and be used as desktop application. (till angular 5 it was not possible).
+--To render react component on client(i.e on browser) use ReactDom, on node server use ReactDom server, on .dot net server use react .net
+    -- to on desktop use Electron.js and on mobile use ReactNative.
+--Electron js is used to make application cross plateform.
+--react prefer to create state less component so that it can be reused as much as possible. data should come from logic
+--for react v15 js used is ES5 and for v16 js used is SE6(ES2015)+ .
+-- .jsx (javascript xml) is react's templating engine. It says we can write html in js file using .jsx and react converts that into html
+--Babel takes the source code and complie unti js file and for that we need presets in babel.
+--React cli name is createReactApp
+
+--react and react-dom is must for react app. it also require webpack(webpack webpack-cli webpack-dev-server webpack-merge) and babel(babel-core babel-preset-env babel-preset-react,babel-loader,babel-polifill)
+--aslo require --save-dev css-loader file-loader mini-css-extract-plugin optimize-css-assets-webpack-plugin for css
+--every react component must inherit from component class and have a render function and must retrun atleast one <div>
+--fonts files are loaded using file loader
+--rcc tab to create react component snippets
+--In ES2015 this.name(i.e variable declarion) has to be done in constructor. and call to super() is must else throws error.
+--this.state is used for keeping the data inside the component. state needs to be initialised else blank(read about react state).
+--props(are pre-initialised) is used to get data from outside of the component. to use props...constructor has to be declared with one parameter and that has to be passed in super()
+    props are read only and used only for sending data(anything that is coming in is only for input and not for modification)
+--best pravtice is to create stateless component. 
+--data will be sent in attribute style of html.
+--Context of this is decided by the method where this is used.
+--React doesnot react to mutation. it works with immutation(create a copy and change) use this.setState(state to modify, callback function)
+--When component is loaded on m/y, virtual Dom is created. V DOM is compared with physical DOM(UI displyed) and deltas are formed(differences).Reacts updates only the deltas.
+--virtual DOM is Dom created by React and loaded in the m/y
+--React does not upadte whole UI. It updates only the differences(deltas) in the DOM.
+--in jsx, event object is automatically passed (js event is diff for all browser like mouse in chrome and pointer in edge)
+    If the method expect extra argument, you have to explicitly pass that. 
+--Synthetics events --- is wrapper over JS event object
+--React is always lighter than angular on browser bcoz m/y utilization is less
+--to create reference use this.child =React.createRef() and use ref property to point.
+--to set default value use ClassName.defaultProps
+--state of a method can be changed only from the component where it belong to
+--react will not allow you to edit editable element without a change handler method. bcoz its unidirectional
+--data flows from Source to target. if working with one componet then state is source and UI is target
+--In react we have controlled components
+--u can read value from controlled component using change handler and from uncontrolled using ref
+--explore react Bootstrap and material UI
+--Instance methods: methods used on this key word
+--Prop-types library is used for declaring property types, it helps to validate the incoming input.
+--React component lifecycle
+Mounting (mounting happen only once)
+	constructor()---is only fired in mounting phase not in update phase(i.e on update)
+	UNSAFE_componentWillMount() | static getDerivedStateFromProps()
+	render()
+	componentDidMount()
+
+Updating
+	UNSAFE_componentWillRecieveProps()  | static getDerivedStateFromProps()
+	shouldComponentUpdate()---default true....to switch off rendering make it false. When this function is called render function is not called but the state(date) of the component keeps updating
+	--all the components below this is not rendered if it is set to false
+	UNSAFE_componentWillUpdate()
+	render()
+	componentDidUpdate()
+
+Unmounting
+	componentWillUnmount()
+
+Error
+	componentDidCatch()
+
+--lifeCycle methods are executed only if they are written
+--whenever the state of the component changes, rendering happen. whenever achange a happen in a child component, then entire DOM tree is not updated. only the updated component and its child is rendered
+--To communicate with server we can use XHR/JQuery AJAX/fetch/Axios api. Call server Before React Comp is rendered and do Ajax call from react comp
+--Routing on client side means uncontrolled
+--ReactRouterDom is used for rounting in react. add this library and import in ventor.js, react router in not the part of react library
+--instead for <a href> use <Link to> default nature of <a href> is to make server side call which refresh whole page
+--if we use <a href instead of <Link to in react and routerLink in angular....it will make call to server on every router click
+--BrowserRouter(i.e react router) is loaded first and then root component is loaded and so on.
+--if your component has only render function(i.e only presentation) it can be written using arrow function instead of using class.
+--arrow function has implicit return key if we dont use { }
+--presentational----use arrow function 
+--container Component----use class
+--using render, a component can be inlined with the Router path. "**" path should always be at the last.
+--BrowserRoutes->RootComponent->Header->Link->Route->productComponet->Link->Route->Render
+--<Route path="/admin" component={ComponentName} /> gives access to props. props is automatically passed
+-- if using Routes path="" render ={()=>{}}function, props by default is not accessible. we need to pass props in render = {(props)=>{}}
+--react-loadable is used for lazy loading
+--Component on demand in loaded only once and stored in m/y and next time it is served from there
+--gulp is an automation tool. eg..on checking in some code in source control..some test cases should run and should start the build and should desploy somewhere etc....all these can be automated with gulp.
+--form data is submitted in url-encoded format username=user&password=pass
+--fetch call can not be cancelled and does not support interceptor, and does not have support for XSRF, fetch is meant to be used only in browser, also it does not suport transform.
+--fetch fails only in network error
+--axios supports interceptor, XSRF, transfrom and can be cancelled
+--(XHR/JQuery AJAX/fetch/Axios api) explore the differences b/w these
+--access token, refresh token and bearer token explore
+--explore autherization in node js
+--Redux is lib used for storing state of componet, it helps in centralizing data at one place, In centralized data it is easy to track the state of data with the help of reducers
+--redux store....temporary store on client side to store all the data of ur react application
+--with lib ngRx, redux can used in angular.
+--flux is concept and redux is implementation of flux
+--Only Reducers can perform action and action on the data stored .i.e can change the state, anybody who wants to 
+--Stores contains different part of your application---different reducers have access to stores--diff reducers is controlled by root Reducers
+--Symbol is more unique than constant.
+--Action type will be const or symbol and payload:data is object
+--dispatch means to call the action, and once the action is dispatched, it will be taken by reducers.
+--Reducers contains the logic of modifying the state based on action which is raised by component
+--use react-redux connection lib and redux the store lib
+--Redux store should be loaded at the start of the application
+--Make entry of <Provider> component(the top most component of react app) in the main.js.
+--To create store we need reducers, to create reducers we need action types(AT is used by reducers and action creators--a method which returns action object(a plain java script))
+--pure JS function is a function which does not mutate the state
+--react developer tool and reduc DevTools by remotedevio
+-- A higher-order function is a function that can take another function as an argument, or that returns a function as a result
+--function currying explore
+--connect()(it is higher order funvtion) returns a function which eccepts a component and returns new component with added features
+--Steps for redux--Actions types-->Action creators(gives action object)-->reducer-->combine in root reducer-->create store then use connect() api to connect
+--double dispatch---
+--Redux thunk is an api which helps in asynchronour communication in redux based application
+--withRouter set the Context
+rrc-react redux component
+--to read data from url props.match.param.id
+--mapStateToProps means store data is mapped to component
+--to allow data editting in form use onChange handler. in angular ngModule two way binding is used
+--props are read only hence state.data should be passed on props.data
+--bind action creator from redux library to bind all the action creator methods in mapDispatchToProps() of component
